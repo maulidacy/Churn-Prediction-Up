@@ -1,0 +1,15 @@
+name: churn-prediction
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - streamlit
+      - pandas==2.2.3
+      - numpy==2.2.6
+      - scikit-learn==1.6.1
+      - scipy==1.15.3
+      - joblib==1.5.0
+      - altair
+      - seaborn

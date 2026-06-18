@@ -1,0 +1,2 @@
+Best Scenario,Best Model,Accuracy,Precision,Recall,F1-Score,Model File
+Hyperparameter Tuning,Voting Classifier,0.8553333333333333,0.5149769585253456,0.9717391304347828,0.6731927710843374,models/best_model.pkl
