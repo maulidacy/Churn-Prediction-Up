@@ -85,64 +85,64 @@ def prediction_form():
     options = get_options()
 
     with st.form("churn_prediction_form"):
-        st.markdown("### Customer Information")
+        st.markdown("### Informasi Pelanggan (Customer Information)")
         st.caption("Data dasar pelanggan yang digunakan untuk membentuk profil pelanggan.")
 
         col1, col2 = st.columns(2, gap="medium")
 
         with col1:
-            gender = st.selectbox("Gender", options["gender"])
-            age = st.number_input("Age", min_value=10, max_value=100, value=32, step=1)
-            country = st.selectbox("Country", options["country"])
-            city = st.selectbox("City", options["city"])
+            gender = st.selectbox("Jenis Kelamin (gender)", options["gender"])
+            age = st.number_input("Umur Pelanggan (age)", min_value=10, max_value=100, value=32, step=1)
+            country = st.selectbox("Negara (country)", options["country"])
+            city = st.selectbox("Kota (city)", options["city"])
 
         with col2:
             signup_date = st.date_input(
-                "Signup Date",
+                "Tanggal Daftar (signup_date)",
                 value=date.today() - timedelta(days=365),
             )
             last_purchase_date = st.date_input(
-                "Last Purchase Date",
+                "Tanggal Pembelian Terakhir (last_purchase_date)",
                 value=date.today() - timedelta(days=30),
             )
-            device_type = st.selectbox("Device Type", options["device_type"])
-            payment_method = st.selectbox("Payment Method", options["payment_method"])
+            device_type = st.selectbox("Jenis Perangkat (device_type)", options["device_type"])
+            payment_method = st.selectbox("Metode Pembayaran (payment_method)", options["payment_method"])
 
         st.markdown("---")
 
-        st.markdown("### Subscription & Promotion")
+        st.markdown("### Langganan & Promosi (Subscription & Promotion)")
         st.caption("Informasi paket langganan, status premium, serta penggunaan promosi.")
 
         col3, col4 = st.columns(2, gap="medium")
 
         with col3:
             subscription_type = st.selectbox(
-                "Subscription Type",
+                "Jenis Langganan (subscription_type)",
                 options["subscription_type"],
             )
-            is_premium_user = yes_no_input("Premium User", "premium_user")
+            is_premium_user = yes_no_input("Pengguna Premium (is_premium_user)", "premium_user")
 
         with col4:
-            discount_used = yes_no_input("Discount Used", "discount_used")
-            using_coupon = yes_no_input("Using Coupon Code", "using_coupon")
+            discount_used = yes_no_input("Menggunakan Diskon (discount_used)", "discount_used")
+            using_coupon = yes_no_input("Menggunakan Kode Kupon (coupon_code)", "using_coupon")
 
         st.markdown("---")
 
-        st.markdown("### Activity & Transactions")
+        st.markdown("### Aktivitas & Transaksi (Activity & Transactions)")
         st.caption("Aktivitas penggunaan layanan dan riwayat transaksi pelanggan.")
 
         col5, col6, col7 = st.columns(3, gap="medium")
 
         with col5:
-            total_visits = st.number_input("Total Visits", min_value=0, value=25, step=1)
+            total_visits = st.number_input("Total Kunjungan (total_visits)", min_value=0, value=25, step=1)
             avg_session_time = st.number_input(
-                "Average Session Time",
+                "Rata-rata Waktu Sesi (avg_session_time)",
                 min_value=0.0,
                 value=12.5,
                 step=0.5,
             )
             pages_per_session = st.number_input(
-                "Pages per Session",
+                "Halaman per Sesi (pages_per_session)",
                 min_value=0.0,
                 value=4.0,
                 step=0.5,
@@ -150,19 +150,19 @@ def prediction_form():
 
         with col6:
             total_spent = st.number_input(
-                "Total Spent",
+                "Total Belanja (total_spent)",
                 min_value=0.0,
                 value=750.0,
                 step=50.0,
             )
             avg_order_value = st.number_input(
-                "Average Order Value",
+                "Rata-rata Nilai Pesanan (avg_order_value)",
                 min_value=0.0,
                 value=120.0,
                 step=10.0,
             )
             lifetime_value = st.number_input(
-                "Lifetime Value",
+                "Estimasi Nilai Pelanggan (lifetime_value)",
                 min_value=0.0,
                 value=1200.0,
                 step=50.0,
@@ -170,19 +170,19 @@ def prediction_form():
 
         with col7:
             last_3_month_purchase_freq = st.number_input(
-                "Last 3 Month Purchase Frequency",
+                "Frekuensi Pembelian 3 Bulan Terakhir (last_3_month_purchase_freq)",
                 min_value=0,
                 value=3,
                 step=1,
             )
             support_tickets = st.number_input(
-                "Support Tickets",
+                "Tiket Bantuan/Keluhan (support_tickets)",
                 min_value=0,
                 value=1,
                 step=1,
             )
             delivery_delay_days = st.number_input(
-                "Delivery Delay Days",
+                "Hari Keterlambatan Pengiriman (delivery_delay_days)",
                 min_value=0,
                 value=2,
                 step=1,
@@ -190,20 +190,20 @@ def prediction_form():
 
         st.markdown("---")
 
-        st.markdown("### Marketing Interaction")
+        st.markdown("### Interaksi Marketing (Marketing Interaction)")
         st.caption("Interaksi pelanggan dengan channel akuisisi dan aktivitas email marketing.")
 
         col8, col9, col10 = st.columns(3, gap="medium")
 
         with col8:
             acquisition_channel = st.selectbox(
-                "Acquisition Channel",
+                "Channel Akuisisi (acquisition_channel)",
                 options["acquisition_channel"],
             )
 
         with col9:
             email_open_rate = st.slider(
-                "Email Open Rate",
+                "Tingkat Buka Email (email_open_rate)",
                 0.0,
                 1.0,
                 0.45,
@@ -212,7 +212,7 @@ def prediction_form():
 
         with col10:
             email_click_rate = st.slider(
-                "Email Click Rate",
+                "Tingkat Klik Email (email_click_rate)",
                 0.0,
                 1.0,
                 0.12,
@@ -220,7 +220,7 @@ def prediction_form():
             )
 
         marketing_spend_per_user = st.number_input(
-            "Marketing Spend per User",
+            "Biaya Marketing per Pelanggan (marketing_spend_per_user)",
             min_value=0.0,
             value=45.0,
             step=5.0,
@@ -228,14 +228,14 @@ def prediction_form():
 
         st.markdown("---")
 
-        st.markdown("### Customer Satisfaction")
+        st.markdown("### Kepuasan Pelanggan (Customer Satisfaction)")
         st.caption("Indikator kepuasan, loyalitas, refund, dan potensi keluhan pelanggan.")
 
         col11, col12, col13 = st.columns(3, gap="medium")
 
         with col11:
             satisfaction_score = st.slider(
-                "Satisfaction Score",
+                "Skor Kepuasan (satisfaction_score)",
                 1.0,
                 5.0,
                 3.8,
@@ -243,13 +243,13 @@ def prediction_form():
             )
 
         with col12:
-            nps_score = st.slider("NPS Score", 0, 10, 7, 1)
+            nps_score = st.slider("Skor NPS/Loyalitas (nps_score)", 0, 10, 7, 1)
 
         with col13:
-            refund_requested = yes_no_input("Refund Requested", "refund_requested")
+            refund_requested = yes_no_input("Permintaan Refund (refund_requested)", "refund_requested")
 
         submitted = st.form_submit_button(
-            "Predict Customer Churn",
+            "Prediksi Churn Pelanggan",
             use_container_width=True,
         )
 
@@ -302,8 +302,8 @@ def render_prediction_result(result: dict):
     if prediction == 1:
         badge_class = "risk-badge danger"
         result_class = "prediction-card danger"
-        label = "High Churn Risk"
-        title = "Customer predicted as Churn"
+        label = "Risiko Churn Tinggi"
+        title = "Pelanggan Diprediksi Churn"
         description = "Pelanggan ini diprediksi memiliki risiko berhenti menggunakan layanan."
         recommendation = (
             "Prioritaskan pelanggan ini untuk strategi retensi, cek keluhan pelanggan, "
@@ -313,8 +313,8 @@ def render_prediction_result(result: dict):
     else:
         badge_class = "risk-badge safe"
         result_class = "prediction-card safe"
-        label = "Low Churn Risk"
-        title = "Customer predicted as Not Churn"
+        label = "Risiko Churn Rendah"
+        title = "Pelanggan Diprediksi Tidak Churn"
         description = "Pelanggan ini diprediksi masih memiliki kecenderungan bertahan."
         recommendation = (
             "Pertahankan engagement pelanggan melalui komunikasi, pengalaman layanan yang baik, "
@@ -343,20 +343,20 @@ def render_prediction_result(result: dict):
         "</div>",
         '<div class="prediction-metric-grid">',
         '<div class="prediction-metric-card">',
-        '<div class="prediction-metric-label">Churn Probability</div>',
+        '<div class="prediction-metric-label">Probabilitas Churn (churn_probability)</div>',
         f'<div class="prediction-metric-value">{probability_text}</div>',
         '<div class="progress-track">',
         f'<div class="{progress_class}" style="width: {probability_width}%;"></div>',
         "</div>",
         "</div>",
         '<div class="prediction-metric-card">',
-        '<div class="prediction-metric-label">Confidence Score</div>',
+        '<div class="prediction-metric-label">Skor Keyakinan Model (confidence_score)</div>',
         f'<div class="prediction-metric-value">{confidence_text}</div>',
         '<div class="prediction-metric-desc">Tingkat keyakinan model terhadap hasil prediksi.</div>',
         "</div>",
         "</div>",
         '<div class="recommendation-card">',
-        '<div class="recommendation-title">Recommendation</div>',
+        '<div class="recommendation-title">Rekomendasi (recommendation)</div>',
         f"<p>{recommendation}</p>",
         "</div>",
         "</div>",
